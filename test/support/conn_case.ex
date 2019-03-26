@@ -26,7 +26,16 @@ defmodule EndpointostravaWeb.ConnCase do
     end
   end
 
-  setup _tags do
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+  setup tags do
+    {:ok, conn: build_conn(tags)}
+  end
+
+  defp build_conn(%{authenticated: true}) do
+    Phoenix.ConnTest.build_conn()
+    |> Plug.Conn.put_req_header("token", "token")
+  end
+
+  defp build_conn(_) do
+    Phoenix.ConnTest.build_conn()
   end
 end

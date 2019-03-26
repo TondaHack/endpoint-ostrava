@@ -11,6 +11,7 @@ defmodule EndpointostravaWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug AuthPlug
   end
 
   scope "/", EndpointostravaWeb do

@@ -1,6 +1,6 @@
 defmodule EndpointostravaWeb.UsersControllerTest do
   use EndpointostravaWeb.ConnCase
-
+  @tag :authenticated
   test "GET /api/users", %{conn: conn} do
     response =
       conn
@@ -16,6 +16,7 @@ defmodule EndpointostravaWeb.UsersControllerTest do
     assert response == expected
   end
 
+  @tag :authenticated
   test "GET /api/users/1", %{conn: conn} do
     response =
       conn
@@ -27,9 +28,16 @@ defmodule EndpointostravaWeb.UsersControllerTest do
     assert response == expected
   end
 
+  @tag :authenticated
   test "GET /api/users/5", %{conn: conn} do
     assert conn
            |> get(Routes.users_path(conn, :show, 5))
            |> json_response(404)
+  end
+
+  test "GET /api/users/5 without authorization", %{conn: conn} do
+    assert conn
+           |> get(Routes.users_path(conn, :index))
+           |> response(401)
   end
 end
