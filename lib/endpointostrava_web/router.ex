@@ -19,6 +19,12 @@ defmodule EndpointostravaWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", EndpointostravaWeb do
+    pipe_through :api
+
+    resources "/users", UsersController, only: [:index, :show]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", EndpointostravaWeb do
   #   pipe_through :api
