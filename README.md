@@ -16,3 +16,12 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+
+## Run Docker
+
+### Build
+  `docker build -t ostravaendpoint .`
+### Run
+  `docker run -p 4000:4000 ostravaendpoint`
+
